@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -12,6 +13,7 @@ namespace Web.NetCoreSwaggerImp.Controllers
     public class PersonalInfoesController : Controller
     {
         private readonly AppDBContext _context;
+        private readonly string apiURL = "http://localhost:38845/api/personalinfo/";
 
         public PersonalInfoesController(AppDBContext context)
         {
@@ -21,7 +23,15 @@ namespace Web.NetCoreSwaggerImp.Controllers
         // GET: PersonalInfoes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.PersonalInfo.ToListAsync());
+            //Using Web API
+            var client = new HttpClient();
+            var response = client.GetAsync(apiURL + "GetPersonalInfo").Result;
+            var personalInfo = response.Content.ReadAsAsync<IEnumerable<PersonalInfo>>().Result;
+            return View(personalInfo);
+
+
+            //Using EF Db repo controller:
+            //return View(await _context.PersonalInfo.ToListAsync());
         }
 
         // GET: PersonalInfoes/Details/5
