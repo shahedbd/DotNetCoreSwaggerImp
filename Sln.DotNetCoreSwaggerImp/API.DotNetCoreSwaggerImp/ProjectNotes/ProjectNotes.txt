@@ -46,7 +46,15 @@ app.UseSwaggerUI(c =>
 });
 Now you can restart your application and check out the auto-generated, interactive docs at "/swagger
 
-06. Browse to the Swagger UI at http://localhost:<random_port>/swagger 
+06. Browse to the Swagger UI at 
+http://localhost:38845/swagger/index.html
+or http://localhost:<random_port>/swagger 
 
 
 
+
+
+
+Ref:
+https://github.com/ForkedRepo/aspnetcore-app-workshop/blob/master/docs/1.%20Create%20BackEnd%20API%20project.md
+https://docs.microsoft.com/en-us/aspnet/core/tutorials/getting-started-with-swashbuckle?view=aspnetcore-2.1&tabs=visual-studio%2Cvisual-studio-xml
